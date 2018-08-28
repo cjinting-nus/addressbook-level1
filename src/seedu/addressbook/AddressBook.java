@@ -206,11 +206,14 @@ public class AddressBook {
      * ====================================================================
      */
 
+    private static String userName;
+
     public static void main(String[] args) {
         showWelcomeMessage();
         processProgramArgs(args);
         loadDataFromStorage();
         while (true) {
+            getUsername();
             String userCommand = getUserInput();
             echoUserCommand(userCommand);
             String feedback = executeCommand(userCommand);
@@ -292,6 +295,7 @@ public class AddressBook {
      */
     private static void exitProgram() {
         showToUser(MESSAGE_GOODBYE, DIVIDER, DIVIDER);
+        System.out.println(LINE_PREFIX + "See you next time, " + userName + "!");
         System.exit(0);
     }
 
@@ -607,6 +611,13 @@ public class AddressBook {
         }
         return inputLine;
     }
+
+    private static void getUsername() {
+        System.out.print(LINE_PREFIX + "Please enter your name: ");
+        userName = SCANNER.nextLine();
+        System.out.println(LINE_PREFIX + "Hello, " + userName);
+    }
+
 
    /*
     * NOTE : =============================================================
